@@ -8,21 +8,15 @@ class LoanDetails implements ILoanDetails {
     loanAmount: number;
     annualInterestRate: number;
     loanMonths: number;    
-    currentMonth: number;
-    currentLoanAmount: number;
 
     constructor(loanDetailsConfig: ILoanDetails) {        
         this.loanAmount = loanDetailsConfig.loanAmount;
         this.annualInterestRate = loanDetailsConfig.annualInterestRate;
-        this.loanMonths = loanDetailsConfig.loanMonths;
-
-        this.currentMonth = this.loanMonths;
-        this.currentLoanAmount = this.loanAmount;      
+        this.loanMonths = loanDetailsConfig.loanMonths; 
     }
 
     static monthsInYear: number = 12;
 
-    get loanTermYears(): number { return this.currentMonth / LoanDetails.monthsInYear; }
     get monthlyInterestRate(): number {
         return this.annualInterestRate / LoanDetails.monthsInYear / 100;
     }
@@ -36,14 +30,14 @@ class LoanDetails implements ILoanDetails {
         return this.monthlyInterestRate + (this.monthlyInterestRate / (Math.pow(this.monthlyInterestRate + 1, 1) - 1));
     }
     get monthlyInterest(): number {
-        return this.currentLoanAmount * this.monthlyInterestRate * this.currentMonthFactor;
+        return this.loanAmount * this.monthlyInterestRate * this.currentMonthFactor;
     }
     get monthlyPrincipal(): number {
         return this.montlyPayment - this.monthlyInterest;
     }
 
     flush(): void {
-        console.log(this.loanTermYears, this.monthlyInterestRate, this.monthlyInterestFactor, this.montlyPayment, this.currentMonthFactor, this.monthlyInterest, this.monthlyPrincipal);
+        console.log(this.monthlyInterestRate, this.monthlyInterestFactor, this.montlyPayment, this.currentMonthFactor, this.monthlyInterest, this.monthlyPrincipal);
     }
 }
 
@@ -58,16 +52,26 @@ class LoanCalculatorService implements ILoanCalculatorService{
         
     }
 
-    calculate = (loanDetails: LoanDetails): LoanDetails => {
-        loanDetails.currentMonth = loanDetails.loanMonths;
+    calculate = (loanDetails: LoanDetails): LoanDetails => {      
+        loanDetails.loanAmount -= loanDetails.monthlyPrincipal;
+        loanDetails.loanMonths--;
 
         return loanDetails;
     };
 
-    refund = (loanDetails: LoanDetails, amount: number): LoanDetails => {
-        //loanDetails.loanAmount -= amount;
-        //loanDetails.currentLoanAmount -= amount;
+    generate = (loanDetails: LoanDetails): LoanDetails[] => {
+        let scopeLoanDetails: LoanDetails = loanDetails;
+        let loanDetailsCollection: LoanDetails[] = [];
+        while (scopeLoanDetails.loanMonths > 0 && scopeLoanDetails.loanAmount > 0) {
+            scopeLoanDetails = loanCalculatorService.calculate(scopeLoanDetails);
 
+            loanDetailsCollection.push(scopeLoanDetails);
+        }
+
+        return loanDetailsCollection;
+    };
+
+    refund = (loanDetails: LoanDetails, amount: number): LoanDetails => {
         return loanDetails;
     };
 
@@ -81,16 +85,9 @@ class LoanCalculatorService implements ILoanCalculatorService{
 };
 
 const loanCalculatorService = new LoanCalculatorService();
-/*
-let loanDetails = new LoanDetails({ loanAmount: (205602.66 + 2192.36), annualInterestRate: 6.18, loanMonths: 133});
 
-while (loanDetails.currentMonth > 0 && loanDetails.currentLoanAmount > 0) {
-    loanDetails = loanCalculatorService.calculate(loanDetails);
-    loanCalculatorService.displayLoanInformation(loanDetails);
-    loanDetails = loanCalculatorService.refund(loanDetails, 4000);
+let loanDetails = new LoanDetails({ loanAmount: (205602.66 + 2192.36), annualInterestRate: 6.18, loanMonths: 133 });
+console.log(loanCalculatorService.generate(loanDetails).forEach((item)=>item.flush()));
 
-    loanDetails.currentMonth--;
-}
-*/
 
 export default loanCalculatorService;

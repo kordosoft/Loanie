@@ -5,14 +5,7 @@ var LoanDetails = /** @class */ (function () {
         this.loanAmount = loanDetailsConfig.loanAmount;
         this.annualInterestRate = loanDetailsConfig.annualInterestRate;
         this.loanMonths = loanDetailsConfig.loanMonths;
-        this.currentMonth = this.loanMonths;
-        this.currentLoanAmount = this.loanAmount;
     }
-    Object.defineProperty(LoanDetails.prototype, "loanTermYears", {
-        get: function () { return this.currentMonth / LoanDetails.monthsInYear; },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(LoanDetails.prototype, "monthlyInterestRate", {
         get: function () {
             return this.annualInterestRate / LoanDetails.monthsInYear / 100;
@@ -43,7 +36,7 @@ var LoanDetails = /** @class */ (function () {
     });
     Object.defineProperty(LoanDetails.prototype, "monthlyInterest", {
         get: function () {
-            return this.currentLoanAmount * this.monthlyInterestRate * this.currentMonthFactor;
+            return this.loanAmount * this.monthlyInterestRate * this.currentMonthFactor;
         },
         enumerable: true,
         configurable: true
@@ -56,7 +49,7 @@ var LoanDetails = /** @class */ (function () {
         configurable: true
     });
     LoanDetails.prototype.flush = function () {
-        console.log(this.loanTermYears, this.monthlyInterestRate, this.monthlyInterestFactor, this.montlyPayment, this.currentMonthFactor, this.monthlyInterest, this.monthlyPrincipal);
+        console.log(this.monthlyInterestRate, this.monthlyInterestFactor, this.montlyPayment, this.currentMonthFactor, this.monthlyInterest, this.monthlyPrincipal);
     };
     LoanDetails.monthsInYear = 12;
     return LoanDetails;
@@ -65,12 +58,20 @@ var LoanDetails = /** @class */ (function () {
 var LoanCalculatorService = /** @class */ (function () {
     function LoanCalculatorService() {
         this.calculate = function (loanDetails) {
-            loanDetails.currentMonth = loanDetails.loanMonths;
+            loanDetails.loanAmount -= loanDetails.monthlyPrincipal;
+            loanDetails.loanMonths--;
             return loanDetails;
         };
+        this.generate = function (loanDetails) {
+            var scopeLoanDetails = loanDetails;
+            var loanDetailsCollection = [];
+            while (scopeLoanDetails.loanMonths > 0 && scopeLoanDetails.loanAmount > 0) {
+                scopeLoanDetails = loanCalculatorService.calculate(scopeLoanDetails);
+                loanDetailsCollection.push(scopeLoanDetails);
+            }
+            return loanDetailsCollection;
+        };
         this.refund = function (loanDetails, amount) {
-            //loanDetails.loanAmount -= amount;
-            //loanDetails.currentLoanAmount -= amount;
             return loanDetails;
         };
         this.round = function (value) {
@@ -84,16 +85,7 @@ var LoanCalculatorService = /** @class */ (function () {
 }());
 ;
 var loanCalculatorService = new LoanCalculatorService();
-/*
-let loanDetails = new LoanDetails({ loanAmount: (205602.66 + 2192.36), annualInterestRate: 6.18, loanMonths: 133});
-
-while (loanDetails.currentMonth > 0 && loanDetails.currentLoanAmount > 0) {
-    loanDetails = loanCalculatorService.calculate(loanDetails);
-    loanCalculatorService.displayLoanInformation(loanDetails);
-    loanDetails = loanCalculatorService.refund(loanDetails, 4000);
-
-    loanDetails.currentMonth--;
-}
-*/
+var loanDetails = new LoanDetails({ loanAmount: (205602.66 + 2192.36), annualInterestRate: 6.18, loanMonths: 133 });
+console.log(loanCalculatorService.generate(loanDetails).forEach(function (item) { return item.flush(); }));
 exports.default = loanCalculatorService;
 //# sourceMappingURL=index.js.map
