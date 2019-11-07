@@ -20,7 +20,7 @@ var LoanDetails = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(LoanDetails.prototype, "montlyPayment", {
+    Object.defineProperty(LoanDetails.prototype, "monthlyPayment", {
         get: function () {
             return this.loanAmount * this.monthlyInterestFactor;
         },
@@ -43,13 +43,13 @@ var LoanDetails = /** @class */ (function () {
     });
     Object.defineProperty(LoanDetails.prototype, "monthlyPrincipal", {
         get: function () {
-            return this.montlyPayment - this.monthlyInterest;
+            return this.monthlyPayment - this.monthlyInterest;
         },
         enumerable: true,
         configurable: true
     });
     LoanDetails.prototype.flush = function () {
-        console.log(this.monthlyInterestRate, this.monthlyInterestFactor, this.montlyPayment, this.currentMonthFactor, this.monthlyInterest, this.monthlyPrincipal);
+        console.log(this.monthlyInterestRate, this.monthlyInterestFactor, this.monthlyPayment, this.currentMonthFactor, this.monthlyInterest, this.monthlyPrincipal);
     };
     LoanDetails.monthsInYear = 12;
     return LoanDetails;

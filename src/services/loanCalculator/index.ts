@@ -23,7 +23,7 @@ class LoanDetails implements ILoanDetails {
     get monthlyInterestFactor(): number {
         return this.monthlyInterestRate + (this.monthlyInterestRate / (Math.pow(this.monthlyInterestRate + 1, this.loanMonths) - 1));
     }
-    get montlyPayment(): number {
+    get monthlyPayment(): number {
         return this.loanAmount * this.monthlyInterestFactor;
     }
     get currentMonthFactor(): number {
@@ -33,11 +33,11 @@ class LoanDetails implements ILoanDetails {
         return this.loanAmount * this.monthlyInterestRate * this.currentMonthFactor;
     }
     get monthlyPrincipal(): number {
-        return this.montlyPayment - this.monthlyInterest;
+        return this.monthlyPayment - this.monthlyInterest;
     }
 
     flush(): void {
-        console.log(this.monthlyInterestRate, this.monthlyInterestFactor, this.montlyPayment, this.currentMonthFactor, this.monthlyInterest, this.monthlyPrincipal);
+        console.log(this.monthlyInterestRate, this.monthlyInterestFactor, this.monthlyPayment, this.currentMonthFactor, this.monthlyInterest, this.monthlyPrincipal);
     }
 }
 
