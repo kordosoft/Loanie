@@ -1,7 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var LoanDetails = /** @class */ (function () {
     function LoanDetails(loanDetailsConfig) {
+        var _this = this;
+        this.refund = function (amount) {
+            _this.loanAmount -= amount;
+        };
         this.loanAmount = loanDetailsConfig.loanAmount;
         this.annualInterestRate = loanDetailsConfig.annualInterestRate;
         this.loanMonths = loanDetailsConfig.loanMonths;
@@ -51,6 +53,7 @@ var LoanDetails = /** @class */ (function () {
     LoanDetails.prototype.flush = function () {
         console.log(this.monthlyInterestRate, this.monthlyInterestFactor, this.monthlyPayment, this.currentMonthFactor, this.monthlyInterest, this.monthlyPrincipal);
     };
+    ;
     LoanDetails.monthsInYear = 12;
     return LoanDetails;
 }());
@@ -58,9 +61,11 @@ var LoanDetails = /** @class */ (function () {
 var LoanCalculatorService = /** @class */ (function () {
     function LoanCalculatorService() {
         this.calculate = function (loanDetails) {
-            loanDetails.loanAmount -= loanDetails.monthlyPrincipal;
-            loanDetails.loanMonths--;
-            return loanDetails;
+            return new LoanDetails({
+                loanAmount: (loanDetails.loanAmount - loanDetails.monthlyPrincipal),
+                annualInterestRate: loanDetails.annualInterestRate,
+                loanMonths: loanDetails.loanMonths - 1
+            });
         };
         this.generate = function (loanDetails) {
             var scopeLoanDetails = loanDetails;
@@ -71,14 +76,23 @@ var LoanCalculatorService = /** @class */ (function () {
             }
             return loanDetailsCollection;
         };
-        this.refund = function (loanDetails, amount) {
+        this.refund = function (loanDetails, month, amount) {
+            var loanDetail = loanDetails.filter(function (loan) { return loan.loanMonths == month; })[0];
+            var index = loanDetails.indexOf(loanDetail);
+            if (index > -1) {
+                loanDetail.refund(amount);
+                while (loanDetail.loanMonths > 0 && loanDetail.loanAmount > 0) {
+                    loanDetail = loanCalculatorService.calculate(loanDetail);
+                    loanDetails[index] = loanDetail;
+                    index++;
+                }
+            }
             return loanDetails;
         };
-        this.round = function (value) {
-            return Math.round(value * 100) / 100;
-        };
         this.displayLoanInformation = function (loanDetails) {
-            loanDetails.flush();
+            loanDetails.forEach(function (item) {
+                item.flush();
+            });
         };
     }
     return LoanCalculatorService;
@@ -86,6 +100,9 @@ var LoanCalculatorService = /** @class */ (function () {
 ;
 var loanCalculatorService = new LoanCalculatorService();
 var loanDetails = new LoanDetails({ loanAmount: (205602.66 + 2192.36), annualInterestRate: 6.18, loanMonths: 133 });
-console.log(loanCalculatorService.generate(loanDetails).forEach(function (item) { return item.flush(); }));
-exports.default = loanCalculatorService;
+var generatedData = loanCalculatorService.generate(loanDetails);
+console.log(loanCalculatorService.displayLoanInformation(generatedData));
+generatedData = loanCalculatorService.refund(generatedData, 130, 4000);
+console.log(loanCalculatorService.displayLoanInformation(generatedData));
+//export default loanCalculatorService;
 //# sourceMappingURL=index.js.map
