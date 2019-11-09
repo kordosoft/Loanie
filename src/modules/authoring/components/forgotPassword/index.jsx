@@ -2,7 +2,7 @@
 
 import './index.scss';
 
-import { ForgotPasswordModel } from './types';
+import { ForgotPasswordModel } from 'modules/authoring/types';
 
 const ForgotPassword = () => {
     const [forgotPassword, setForgotPassword] = useState(new ForgotPasswordModel());

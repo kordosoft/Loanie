@@ -2,7 +2,7 @@
 
 import './index.scss';
 
-import { RegisterModel } from './types';
+import { RegisterModel } from 'modules/authoring/types';
 
 const Register = () => {
     const [register, setRegister] = useState(new RegisterModel());

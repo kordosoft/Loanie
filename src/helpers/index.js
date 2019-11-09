@@ -1,3 +1,3 @@
-﻿import environment from './environment';
+﻿import environmnet from './environment';
 
 export { environmnet };
