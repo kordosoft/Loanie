@@ -1,18 +1,17 @@
-﻿import React from 'react';
-import PropTypes from 'prop-types';
+﻿import React, { useState } from 'react';
 
 import './index.scss';
 
 import { RegisterModel } from './types';
 
-const Register = (register) => {
+const Register = () => {
+    const [register, setRegister] = useState(new RegisterModel());
+
     return (
         <div className="login">
             {JSON.stringify(register)}
         </div>
     );
 };
-
-Register.propTypes = PropTypes.instanceOf(RegisterModel);
 
 export default Register;

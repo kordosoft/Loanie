@@ -1,18 +1,17 @@
-﻿import React from 'react';
-import PropTypes from 'prop-types';
+﻿import React, { useState } from 'react';
 
 import './index.scss';
 
 import { ForgotPasswordModel } from './types';
 
-const ForgotPassword = (forgotPassword) => {
+const ForgotPassword = () => {
+    const [forgotPassword, setForgotPassword] = useState(new ForgotPasswordModel());
+
     return (
         <div className="forgotPassword">
             {JSON.stringify(forgotPassword)}
         </div>
     );
 };
-
-ForgotPassword.propTypes = PropTypes.instanceOf(ForgotPasswordModel);
 
 export default ForgotPassword;

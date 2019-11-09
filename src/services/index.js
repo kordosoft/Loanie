@@ -1,3 +1,3 @@
-﻿import loanCalculatorService from './loanCalculatorService';
+﻿import LoanCalculatorService from './loanCalculator';
 
-export { loanCalculatorService };
+export { LoanCalculatorService };

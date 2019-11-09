@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState,useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import './index.scss';
@@ -6,9 +6,27 @@ import './index.scss';
 import { LoginModel } from './types';
 import { Button, Input } from 'components';
 
+import { LoanCalculatorService } from 'services';
+
 const Login = () => {
     const [login, setLogin] = useState(new LoginModel());
     const history = useHistory();
+
+    useEffect(() => {
+        //const loanCalculatorService = new LoanCalculatorService(194995.36, 127, 6.02);
+        //const generatedData = loanCalculatorService.generate();
+        //const refunded = loanCalculatorService.refund(generatedData, 120, 5000);
+
+        const loanCalculatorService = new LoanCalculatorService(207795.02, 133, 6.18);
+
+        const generatedData = loanCalculatorService.generate();
+
+        let index = 2;
+        const updatedLoans = loanCalculatorService.refund(generatedData, 133 - index, 4000);
+        const current = updatedLoans[index];
+        const next = updatedLoans[index + 1];
+        debugger;
+    }, []);
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
@@ -26,7 +44,7 @@ const Login = () => {
         history.push('/forgotPassword');
     };
 
-    const register = () => {
+    const register = () => {     
         history.push('/register');
     };
 
