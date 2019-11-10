@@ -50,8 +50,7 @@ const Register = () => {
                     value={register.password}
                 />
 
-                <Input
-                    inputType="password"
+                <Password
                     title="Confirm Password"
                     name="confirmPassword"
                     onChange={inputOnChange}
