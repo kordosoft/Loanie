@@ -1,4 +1,4 @@
-import IdentityService from './identity'; 
+import IdentityService from './identity';
 
 const identityService = new IdentityService();
 

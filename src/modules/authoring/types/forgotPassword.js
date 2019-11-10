@@ -1,7 +1,7 @@
 ﻿class ForgotPasswordModel {
-    constructor() {
-        this.username = '';
-    }
+  constructor() {
+    this.username = '';
+  }
 }
 
 export default ForgotPasswordModel;
