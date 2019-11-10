@@ -1,11 +1,9 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
 
-import './index.scss';
-
 const Button = ({ text, type, onClick, className }) => {
     return (
-        <button type={type} onClick={onClick} className={`loan-button ${className}`}>{text}</button>
+        <button type={type} onClick={onClick} className={`btn ${className}`}>{text}</button>
     );
 };
 

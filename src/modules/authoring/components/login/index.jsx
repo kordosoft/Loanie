@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { LoginModel } from 'modules/authoring/types';
 import { identityService } from 'modules/authoring/services';
 
-import { Button, Input } from 'components';
+import { Button, Input, Password } from 'components';
 
 import './index.scss';
 
@@ -47,9 +47,9 @@ const Login = () => {
     };
 
     return (
-        <div className="login">
+        <div className="login mx-auto">
             <div className="row">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="col">
                     <Input
                         inputType="text"
                         title="Username"
@@ -58,23 +58,26 @@ const Login = () => {
                         value={login.username}
                     />
 
-                    <Input
-                        inputType="password"
+                    <Password
                         title="Password"
                         name="password"
                         onChange={inputOnChange}
                         value={login.password}
                     />
 
-                    <div className="row">
-                        <Button type="submit" text="Login" />
-                    </div>
+                    <Button type="submit" text="Login" className="btn-primary btn-block" />
                 </form>
+                </div>
+            <div className="row mt-3">
+                <div className="col">
+                    <Button text="Forgot password" onClick={forgotPassword} className="btn-secondary btn-block" />
+                </div>
+                <div className="col">
+                    <Button text="Register" onClick={register} className="btn-success btn-block" />
+                </div>
             </div>
-            <div className="row">
-                <Button text="Register" onClick={register} />
-                <Button text="Forgot password" onClick={forgotPassword} />
-            </div>
+
+            My Content: 
             {JSON.stringify(login)}
         </div>
     );

@@ -10,26 +10,29 @@ import { environmnet } from './helpers';
 
 import { Login, Register, ForgotPassword, PageNotFound, DataSetup, DataView } from './modules';
 
+import 'bootstrap/dist/css/bootstrap.css';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
 
 const App = () => {
     return (
         <>
-            <BrowserRouter basename={environmnet.basePath}>
-                <Switch>
-                    <Route exact path="/" component={Login} />
-                    <Route path="/login" component={Login} />
+            <div className="container container-fluid vh-100">
+                <BrowserRouter basename={environmnet.basePath}>
+                    <Switch>
+                        <Route exact path="/" component={Login} />
+                        <Route path="/login" component={Login} />
 
-                    <Route path="/register" component={Register} />                    
-                    <Route path="/forgotPassword" component={ForgotPassword} />
+                        <Route path="/register" component={Register} />
+                        <Route path="/forgotPassword" component={ForgotPassword} />
 
-                    <Route path="/loanSetup" component={DataSetup} />
-                    <Route path="/loanView" component={DataView} />
+                        <Route path="/loanSetup" component={DataSetup} />
+                        <Route path="/loanView" component={DataView} />
 
-                    <Route path="*" component={PageNotFound} />
-                </Switch>
-            </BrowserRouter>
+                        <Route path="*" component={PageNotFound} />
+                    </Switch>
+                </BrowserRouter>
+            </div>
             <ToastContainer />
         </>
     );

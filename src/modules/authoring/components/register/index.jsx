@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { RegisterModel } from 'modules/authoring/types';
 import { identityService } from 'modules/authoring/services';
 
-import { Button, Input } from 'components';
+import { Button, Input, Password } from 'components';
 
 import './index.scss';
 
@@ -43,8 +43,7 @@ const Register = () => {
                     value={register.username}
                 />
 
-                <Input
-                    inputType="password"
+                <Password
                     title="Password"
                     name="password"
                     onChange={inputOnChange}
@@ -59,9 +58,7 @@ const Register = () => {
                     value={register.confirmPassword}
                 />
 
-                <div className="row">
-                    <Button type="submit" text="Register" />
-                </div>
+                <Button type="submit" text="Register" className="btn-primary  btn-block" />
             </form>
         </div>
     );

@@ -43,9 +43,7 @@ const ForgotPassword = () => {
                     value={forgotPassword.username}
                 />
                 
-                <div className="row">
-                    <Button type="submit" text="Forgot password" />
-                </div>
+                <Button type="submit" text="Forgot password" className="btn-primary  btn-block" />
             </form>
         </div>
     );

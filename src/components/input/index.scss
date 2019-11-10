@@ -1,2 +1,5 @@
-﻿.loan-input {
+﻿@import 'styles';
+
+a, a:hover {
+    color: var(--main-color-hue);
 }
