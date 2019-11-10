@@ -3,29 +3,29 @@ import PropTypes from 'prop-types';
 
 import './index.scss';
 
-const Input = (props) => (
+const Input = ({ title, name, inputType, value, onChange, placeholder }) => (
     <div className="form-group">
-        <label className="form-label">{props.title}</label>
+        <label className="form-label">{title}</label>
         <input
             className="loan-input"
-            name={props.name}
-            type={props.inputType}
-            value={props.value}
-            onChange={props.onChange}
-            placeholder={props.placeholder} />
+            name={name}
+            type={inputType}
+            value={value}
+            onChange={onChange}
+            placeholder={placeholder} />
     </div>
 );
 
 Input.propTypes = {
-    inputType: PropTypes.oneOf(['text', 'number', 'password']).isRequired,
     title: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
+    inputType: PropTypes.oneOf(['text', 'number', 'password']).isRequired,
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
     ]).isRequired,
-    placeholder: PropTypes.string,
+    onChange: PropTypes.func.isRequired,   
+    placeholder: PropTypes.string
 };
 
 export default Input;

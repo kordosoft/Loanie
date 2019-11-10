@@ -1,12 +1,13 @@
 ﻿import React, { useState,useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-
-import './index.scss';
+import { toast } from 'react-toastify';
 
 import { LoginModel } from 'modules/authoring/types';
+import { identityService } from 'modules/authoring/services';
+
 import { Button, Input } from 'components';
 
-import { identityService } from 'modules/authoring/services';
+import './index.scss';
 
 const Login = () => {
     const [login, setLogin] = useState(new LoginModel());
@@ -25,8 +26,8 @@ const Login = () => {
             .then(() => {
                 history.push('/loanSetup');
             })
-            .catch(er => {
-                alert(er);
+            .catch(error => {
+                toast.error(error);
             });
     };
 

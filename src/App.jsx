@@ -4,11 +4,14 @@ import {
     Switch,
     Route
 } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 
-import './App.scss';
+import { environmnet } from './helpers';
 
 import { Login, Register, ForgotPassword, PageNotFound, DataSetup, DataView } from './modules';
-import { environmnet } from './helpers';
+
+import 'react-toastify/dist/ReactToastify.css';
+import './App.scss';
 
 const App = () => {
     return (
@@ -27,6 +30,7 @@ const App = () => {
                     <Route path="*" component={PageNotFound} />
                 </Switch>
             </BrowserRouter>
+            <ToastContainer />
         </>
     );
 }
