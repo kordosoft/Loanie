@@ -22,7 +22,7 @@ steps:
 - task: Npm@1
   inputs:
     command: custom
-    customCommand: 'test:ci'
+    customCommand: 'run test:ci'
   displayName: run tests
 
 - task: Npm@1
@@ -34,5 +34,5 @@ steps:
 - task: Npm@1
   inputs:
     command: custom
-    customCommand: 'npm run build'
+    customCommand: 'run build'
   displayName: run build
