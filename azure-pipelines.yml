@@ -17,6 +17,6 @@ steps:
 
 - script: |
     npm install
-    npm tests --coverage
+    npm test
     npm run build
   displayName: 'npm install and build'
