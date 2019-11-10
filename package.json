@@ -14,8 +14,8 @@
     "lint:fix": "eslint --fix \"src/**/*.+(js|jsx)\"",
     "format": "prettier --write \"src/**/*.+(js|jsx|json|scss|md)\"",
     "start": "react-scripts start",
-    "test": "react-scripts test",
-    "test:ci": "set CI=true &&  react-scripts test"
+    "test": "react-scripts test a --coverage",
+    "test:ci": "CI=true &&  react-scripts test a --coverage"
   },
   "eslintConfig": {
     "extends": "react-app"
