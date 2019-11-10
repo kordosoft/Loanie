@@ -13,10 +13,24 @@ steps:
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
-  displayName: 'Install Node.js'
+  displayName: 'node install'
+
+- script: | 
+    npm install
+  displayName: 'npm install'
 
 - script: |
-    npm install
-    set CI=true && npm test
     npm run build
-  displayName: 'npm install and build'
+  displayName: 'npm build'
+
+- task: Npm@1
+  inputs:
+    command: custom
+    customCommand: 'test'
+  displayName: run tests
+
+- task: Npm@2
+  inputs:
+    command: custom
+    customCommand: 'run lint'
+  displayName: Run ESLint
