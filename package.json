@@ -10,12 +10,12 @@
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.js src/**/*.jsx",
-    "lint:fix": "eslint --fix src/**/*.js src/**/*.jsx",
-    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
+    "lint": "eslint  \"src/**/*.+(js|jsx)\"",
+    "lint:fix": "eslint --fix \"src/**/*.+(js|jsx)\"",
+    "format": "prettier --write \"src/**/*.+(js|jsx|json|scss|md)\"",
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "ci-test": "CI=true react-scripts test"
+    "test:ci": "CI=true react-scripts test"
   },
   "eslintConfig": {
     "extends": "react-app"

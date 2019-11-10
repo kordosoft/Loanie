@@ -49,8 +49,8 @@ export default class LoanCalculatorService {
         ...{
           monthlyPayment: current.monthlyPayment,
           interest: current.interest,
-          newBalance: current.newBalance
-        }
+          newBalance: current.newBalance,
+        },
       };
     });
   };

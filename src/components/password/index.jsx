@@ -42,11 +42,11 @@ Password.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
 };
 
 Password.defaultProps = {
-  placeholder: ''
+  placeholder: '',
 };
 
 export default Password;

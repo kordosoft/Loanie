@@ -16,12 +16,12 @@ const Header = ({ leftZone, centerZone, rightZone }) => {
 Header.propTypes = {
   leftZone: PropTypes.node,
   centerZone: PropTypes.node.isRequired,
-  rightZone: PropTypes.node
+  rightZone: PropTypes.node,
 };
 
 Header.defaultProps = {
   leftZone: '',
-  rightZone: ''
+  rightZone: '',
 };
 
 export default Header;

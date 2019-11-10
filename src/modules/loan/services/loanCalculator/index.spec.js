@@ -82,12 +82,12 @@ describe('Loan Calculator Service', () => {
         interest
       );
       const before = {
-        ...loanCalculatorService.loans[index]
+        ...loanCalculatorService.loans[index],
       };
 
       loanCalculatorService.refund(numberOfMonths - index, amountToRefund);
       const after = {
-        ...loanCalculatorService.loans[index]
+        ...loanCalculatorService.loans[index],
       };
 
       expect(round(after.loanPrincipal)).to.equal(round(before.loanPrincipal - amountToRefund));

@@ -8,7 +8,7 @@ const DataSetup = ({ text }) => {
 };
 
 DataSetup.propTypes = {
-  text: PropTypes.node.isRequired
+  text: PropTypes.node.isRequired,
 };
 
 export default DataSetup;

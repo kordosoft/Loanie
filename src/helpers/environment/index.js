@@ -2,7 +2,7 @@
   constructor() {
     this.defaultSettings = {
       appName: process.env.REACT_APP_APPLICATION_NAME,
-      basePath: process.env.REACT_APP_BASE_PATH
+      basePath: process.env.REACT_APP_BASE_PATH,
     };
   }
 

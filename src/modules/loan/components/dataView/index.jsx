@@ -8,7 +8,7 @@ const DataView = ({ text }) => {
 };
 
 DataView.propTypes = {
-  text: PropTypes.node.isRequired
+  text: PropTypes.node.isRequired,
 };
 
 export default DataView;

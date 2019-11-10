@@ -9,13 +9,13 @@ Button.propTypes = {
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   className: PropTypes.string,
-  type: PropTypes.string
+  type: PropTypes.string,
 };
 
 Button.defaultProps = {
   className: '',
   type: 'button',
-  onClick: () => {}
+  onClick: () => {},
 };
 
 export default Button;

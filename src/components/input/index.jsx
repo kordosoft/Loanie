@@ -28,11 +28,11 @@ Input.propTypes = {
   inputType: PropTypes.oneOf(['text', 'number']).isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
 };
 
 Input.defaultProps = {
-  placeholder: ''
+  placeholder: '',
 };
 
 export default Input;
