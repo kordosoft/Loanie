@@ -22,14 +22,15 @@ steps:
 - task: Npm@1
   inputs:
     command: custom
-    customCommand: 'run-script test:ci'
-  displayName: run tests
+    customCommand: 'run-script lint'
+  displayName: run ESLint
 
 - task: Npm@1
   inputs:
     command: custom
-    customCommand: 'run-script lint'
-  displayName: run ESLint
+    customCommand: 'run-script test:ci'
+  displayName: run tests
+
 
 - task: Npm@1
   inputs:
