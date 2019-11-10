@@ -19,18 +19,20 @@ steps:
     npm install
   displayName: 'npm install'
 
-- script: |
-    npm run build
-  displayName: 'npm build'
-
 - task: Npm@1
   inputs:
     command: custom
     customCommand: 'test'
   displayName: run tests
 
-- task: Npm@2
+- task: Npm@1
   inputs:
     command: custom
     customCommand: 'run lint'
-  displayName: Run ESLint
+  displayName: run ESLint
+
+- task: Npm@1
+  inputs:
+    command: custom
+    customCommand: 'npm run build'
+  displayName: run build
