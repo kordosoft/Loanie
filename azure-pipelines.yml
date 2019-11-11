@@ -37,3 +37,8 @@ steps:
     command: custom
     customCommand: 'run-script build'
   displayName: run build
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    artifactName: build
+    pathtoPublish: 'build'
