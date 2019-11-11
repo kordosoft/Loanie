@@ -1,57 +1,48 @@
-﻿import React from 'react';
-import PropTypes from 'prop-types';
+﻿import React, { useState } from 'react';
+
+import { DataSetupModel } from 'modules/loan/types';
+
+import { Percentage, Currency, Button } from 'components';
 
 import './index.scss';
 
 const DataSetup = () => {
+    const [dataSetup, setDataSetup] = useState(new DataSetupModel());
+    
     const handleSubmit = (evt) => {
         evt.preventDefault();
 
-        identityService
-            .login(login)
-            .then(() => {
-                history.push('/loanSetup');
-            })
-            .catch((error) => {
-                toast.error(error.message);
-            });
+        alert('nada');
     };
 
     const inputOnChange = (evt) => {
         const { name } = evt.target;
         const { value } = evt.target;
 
-        setLogin({ ...login, ...{ [name]: value } });
+        setDataSetup({ ...dataSetup, ...{ [name]: value } });
     };
 
     return (
         <div className="data-setup">
             <form onSubmit={handleSubmit} className="col">
                 <Currency
-                    inputType="number"
                     title="Loan principal"
                     name="loanPrincipal"
                     onChange={inputOnChange}
                     value={dataSetup.loanPrincipal}
-                    currency={EUR}
                 />
 
-                <Percent
-                    inputType="number"
-                    title="Loan principal"
-                    name="loanPrincipal"
+                <Percentage
+                    title="Interest"
+                    name="interestRate"
                     onChange={inputOnChange}
-                    value={dataSetup.interest}
+                    value={dataSetup.interestRate}
                 />
 
                 <Button type="submit" text="Next" className="btn-primary btn-block" />
             </form>
         </div>
     );
-};
-
-DataSetup.propTypes = {
-  text: PropTypes.node.isRequired,
 };
 
 export default DataSetup;

@@ -1,3 +1,4 @@
 import Loan from './loan';
+import DataSetupModel from './dataSetup';
 
-export { Loan };
+export { Loan, DataSetupModel };
