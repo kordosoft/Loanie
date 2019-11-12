@@ -13,7 +13,7 @@ const DataSetup = () => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    toast.success('Submited'); 
+    toast.success('Submited');
   };
 
   const inputOnChange = (evt) => {
