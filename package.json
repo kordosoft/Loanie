@@ -14,8 +14,14 @@
     "lint:fix": "eslint --fix \"src/**/*.+(js|jsx)\"",
     "format": "prettier --write \"src/**/*.+(js|jsx|json|scss|md)\"",
     "start": "react-scripts start",
-    "test": "react-scripts test --reporters=default --reporters=jest-junit",
-    "test:ci": "set CI=true && react-scripts test --reporters=default --reporters=jest-junit"
+    "test": "react-scripts test --reporters=default --reporters=jest-junit --coverage",
+    "test:ci": "set CI=true && react-scripts test --reporters=default --reporters=jest-junit --coverage"
+  },
+  "jest": {
+    "coverageReporters": [
+      "cobertura",
+      "html"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"

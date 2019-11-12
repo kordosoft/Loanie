@@ -6,29 +6,27 @@ import { faEuroSign as Euro } from '@fortawesome/free-solid-svg-icons';
 import { Input } from 'components';
 
 const Currency = (props) => {
-    const addOn = () => {
-        return (
-            <span className="input-group-text">
-                <FontAwesomeIcon icon={Euro} />
-            </span>
-        );
-    };
-
+  const addOn = () => {
     return (
-        <Input {...props} inputType="number" addOn={addOn()} />
+      <span className="input-group-text">
+        <FontAwesomeIcon icon={Euro} />
+      </span>
     );
+  };
+
+  return <Input {...props} inputType="number" addOn={addOn()} />;
 };
 
 Currency.propTypes = {
-    title: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    onChange: PropTypes.func.isRequired,
-    placeholder: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
 };
 
 Currency.defaultProps = {
-    placeholder: '',
+  placeholder: '',
 };
 
 export default Currency;

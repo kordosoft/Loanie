@@ -19,7 +19,7 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [".js", ".jsx"]
+        "extensions": [ ".js", ".jsx" ]
       }
     ],
     "prettier/prettier": [
@@ -29,7 +29,8 @@
         "singleQuote": true,
         "printWidth": 100
       }
-    ]
+    ],
+    "react/jsx-props-no-spreading": [ "off" ]
   },
   "plugins": ["prettier"]
 }

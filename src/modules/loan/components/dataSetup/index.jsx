@@ -1,4 +1,5 @@
 ﻿import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { DataSetupModel } from 'modules/loan/types';
 
@@ -7,42 +8,42 @@ import { Percentage, Currency, Button } from 'components';
 import './index.scss';
 
 const DataSetup = () => {
-    const [dataSetup, setDataSetup] = useState(new DataSetupModel());
-    
-    const handleSubmit = (evt) => {
-        evt.preventDefault();
+  const [dataSetup, setDataSetup] = useState(new DataSetupModel());
 
-        alert('nada');
-    };
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
 
-    const inputOnChange = (evt) => {
-        const { name } = evt.target;
-        const { value } = evt.target;
+    toast.success('Submited');
+  };
 
-        setDataSetup({ ...dataSetup, ...{ [name]: value } });
-    };
+  const inputOnChange = (evt) => {
+    const { name } = evt.target;
+    const { value } = evt.target;
 
-    return (
-        <div className="data-setup">
-            <form onSubmit={handleSubmit} className="col">
-                <Currency
-                    title="Loan principal"
-                    name="loanPrincipal"
-                    onChange={inputOnChange}
-                    value={dataSetup.loanPrincipal}
-                />
+    setDataSetup({ ...dataSetup, ...{ [name]: value } });
+  };
 
-                <Percentage
-                    title="Interest"
-                    name="interestRate"
-                    onChange={inputOnChange}
-                    value={dataSetup.interestRate}
-                />
+  return (
+    <div className="data-setup">
+      <form onSubmit={handleSubmit} className="col">
+        <Currency
+          title="Loan principal"
+          name="loanPrincipal"
+          onChange={inputOnChange}
+          value={dataSetup.loanPrincipal}
+        />
 
-                <Button type="submit" text="Next" className="btn-primary btn-block" />
-            </form>
-        </div>
-    );
+        <Percentage
+          title="Interest"
+          name="interestRate"
+          onChange={inputOnChange}
+          value={dataSetup.interestRate}
+        />
+
+        <Button type="submit" text="Next" className="btn-primary btn-block" />
+      </form>
+    </div>
+  );
 };
 
 export default DataSetup;

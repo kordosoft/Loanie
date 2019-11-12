@@ -11,34 +11,52 @@ pool:
 
 steps:
 - task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
   displayName: 'node install'
+  inputs:
+    versionSpec: 10.x
 
-- script: | 
-    npm install
+- task: Npm@1
   displayName: 'npm install'
+  inputs:
+    verbose: false
 
 - task: Npm@1
+  displayName: 'npm lint'
   inputs:
     command: custom
+    verbose: false
     customCommand: 'run-script lint'
-  displayName: run ESLint
 
 - task: Npm@1
+  displayName: 'npm test'
   inputs:
     command: custom
+    verbose: false
     customCommand: 'run-script test:ci'
-  displayName: run tests
 
+- task: PublishTestResults@2
+  displayName: 'publish test results'
+  inputs:
+    testResultsFiles: '**/junit.xml'
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'publish code coverage'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+    pathToSources: '$(System.DefaultWorkingDirectory)'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
+    failIfCoverageEmpty: true
 
 - task: Npm@1
+  displayName: 'npm build'
   inputs:
     command: custom
+    verbose: false
     customCommand: 'run-script build'
-  displayName: run build
 
 - task: PublishBuildArtifacts@1
+  displayName: 'publish artifact'
   inputs:
-    artifactName: build
-    pathtoPublish: 'build'
+    ArtifactName: Loanie
+

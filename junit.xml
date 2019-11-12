@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="7" failures="0" time="2.691">
-  <testsuite name="Loan Calculator Service" errors="0" failures="0" skipped="0" timestamp="2019-11-11T19:51:58" time="1.628" tests="7">
-    <testcase classname="Loan Calculator Service should generate exacly 133 records" name="Loan Calculator Service should generate exacly 133 records" time="0.002">
+<testsuites name="jest tests" tests="7" failures="0" time="5.708">
+  <testsuite name="Loan Calculator Service" errors="0" failures="0" skipped="0" timestamp="2019-11-12T20:50:45" time="2.028" tests="7">
+    <testcase classname="Loan Calculator Service should generate exacly 133 records" name="Loan Calculator Service should generate exacly 133 records" time="0.005">
     </testcase>
-    <testcase classname="Loan Calculator Service in second month should return the interest value" name="Loan Calculator Service in second month should return the interest value" time="0">
+    <testcase classname="Loan Calculator Service in second month should return the interest value" name="Loan Calculator Service in second month should return the interest value" time="0.001">
     </testcase>
-    <testcase classname="Loan Calculator Service in second month should return the monthly payment" name="Loan Calculator Service in second month should return the monthly payment" time="0">
+    <testcase classname="Loan Calculator Service in second month should return the monthly payment" name="Loan Calculator Service in second month should return the monthly payment" time="0.001">
     </testcase>
-    <testcase classname="Loan Calculator Service in second month should return the updated balance" name="Loan Calculator Service in second month should return the updated balance" time="0">
+    <testcase classname="Loan Calculator Service in second month should return the updated balance" name="Loan Calculator Service in second month should return the updated balance" time="0.001">
     </testcase>
     <testcase classname="Loan Calculator Service in second month should update the loan principal of the next month" name="Loan Calculator Service in second month should update the loan principal of the next month" time="0.001">
     </testcase>
-    <testcase classname="Loan Calculator Service with refund in third month should substract the correct amount" name="Loan Calculator Service with refund in third month should substract the correct amount" time="0.001">
+    <testcase classname="Loan Calculator Service with refund in third month should substract the correct amount" name="Loan Calculator Service with refund in third month should substract the correct amount" time="0.002">
     </testcase>
     <testcase classname="Loan Calculator Service with refund in third month should update the loan principal of the next month" name="Loan Calculator Service with refund in third month should update the loan principal of the next month" time="0.001">
     </testcase>

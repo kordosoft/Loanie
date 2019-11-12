@@ -6,29 +6,27 @@ import { faPercent as Percent } from '@fortawesome/free-solid-svg-icons';
 import { Input } from 'components';
 
 const Percentage = (props) => {
-    const addOn = () => {
-        return (
-            <span className="input-group-text">
-                <FontAwesomeIcon icon={Percent} />
-            </span>
-        );
-    };
-
+  const addOn = () => {
     return (
-        <Input {...props} inputType="number" addOn={addOn()} />
+      <span className="input-group-text">
+        <FontAwesomeIcon icon={Percent} />
+      </span>
     );
+  };
+
+  return <Input {...props} inputType="number" addOn={addOn()} />;
 };
 
 Percentage.propTypes = {
-    title: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    onChange: PropTypes.func.isRequired,
-    placeholder: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
 };
 
 Percentage.defaultProps = {
-    placeholder: '',
+  placeholder: '',
 };
 
 export default Percentage;
