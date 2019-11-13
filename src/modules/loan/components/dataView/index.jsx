@@ -12,7 +12,7 @@ DataView.propTypes = {
 };
 
 DataView.defaultProps = {
-    text: 'sexy view XOXO'
+  text: 'sexy view XOXO',
 };
 
 export default DataView;
