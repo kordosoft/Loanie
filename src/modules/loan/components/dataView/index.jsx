@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import './index.scss';
 
 const DataView = ({ text }) => {
-  return <div className="data-view">{text}</div>;
+    return <div className="data-view">{text}</div>;
 };
 
 DataView.propTypes = {
-  text: PropTypes.node,
+    text: PropTypes.node,
 };
 
 DataView.defaultProps = {
-  text: 'sexy view XOXO',
+    text: 'sexy view XOXO',
 };
 
 export default DataView;
