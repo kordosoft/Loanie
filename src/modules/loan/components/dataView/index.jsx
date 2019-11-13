@@ -8,7 +8,11 @@ const DataView = ({ text }) => {
 };
 
 DataView.propTypes = {
-  text: PropTypes.node.isRequired,
+  text: PropTypes.node,
+};
+
+DataView.defaultProps = {
+    text: 'sexy view XOXO'
 };
 
 export default DataView;

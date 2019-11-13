@@ -1,3 +1,3 @@
-import { DataSetup, DataView } from './components';
+import { DataWizard } from './components';
 
-export { DataSetup, DataView };
+export { DataWizard };

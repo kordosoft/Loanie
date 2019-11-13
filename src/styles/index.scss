@@ -8,8 +8,10 @@
 }
 
 :root {
-  --main-color-hue: 217;
-  --main-color: hsla(var(--main-color-hue), 97%, 61%, 1);
-  --black: #222;
-  --red: #ed6b5f;
+    --main-color-hue: 217;
+    --main-color: hsla(var(--main-color-hue), 97%, 61%, 1);
+    --black: #222;
+    --red: #ed6b5f;
+    --green: #28a745;
+    --light-gray: #e9ecef;
 }

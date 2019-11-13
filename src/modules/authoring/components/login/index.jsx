@@ -25,7 +25,7 @@ const Login = () => {
     identityService
       .login(login)
       .then(() => {
-        history.push('/loanSetup');
+        history.push('/loan');
       })
       .catch((error) => {
         toast.error(error.message);
@@ -48,7 +48,12 @@ const Login = () => {
   };
 
   return (
-    <div className="login mx-auto">
+      <div className="login mx-auto">
+          <div className="row">
+              <div className="col text-center mt-5 mb-3">
+                  <h1>Login</h1>
+              </div>
+          </div>
       <div className="row">
         <form onSubmit={handleSubmit} className="col">
           <Input
