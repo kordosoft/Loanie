@@ -1,4 +1,5 @@
 ﻿import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 
 import { DataSetupModel } from 'modules/loan/types';
@@ -7,13 +8,15 @@ import { Percentage, Currency, Button, Slider } from 'components';
 
 import './index.scss';
 
-const DataSetup = () => {
-    const [dataSetup, setDataSetup] = useState(new DataSetupModel());
+const DataSetup = ({ data, onChange }) => {
+    const [dataSetup, setDataSetup] = useState(data);
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
 
         toast.success('Submited; updated pipeline');
+
+        onChange(data);
     };
 
     const inputOnChange = (evt) => {
@@ -52,6 +55,15 @@ const DataSetup = () => {
             </form>
         </div>
     );
+};
+
+DataSetup.propTypes = {
+    data: PropTypes.instanceOf(DataSetupModel),
+    onChange: PropTypes.func.isRequired,
+};
+
+DataSetup.defaultProps = {
+    data: new DataSetupModel()
 };
 
 export default DataSetup;
