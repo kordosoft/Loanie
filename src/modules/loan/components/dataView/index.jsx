@@ -11,7 +11,7 @@ const DataView = ({ data, onChange }) => {
 	const inputOnChange = (evt) => {
 		const { name, value } = evt.target;
 
-		setDataView(Object.assign(new DataViewModel(), { ...dataView, [name]: value }));
+		setDataView({ ...dataView, [name]: value });
 	};
 
 	const handleSubmit = (evt) => {
@@ -32,7 +32,7 @@ const DataView = ({ data, onChange }) => {
 };
 
 DataView.propTypes = {
-	data: PropTypes.instanceOf(DataViewModel),
+	data: PropTypes.shape({}),
 	onChange: PropTypes.func.isRequired
 };
 

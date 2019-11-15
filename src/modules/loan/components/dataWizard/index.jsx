@@ -1,8 +1,10 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
+
 import { Stepper } from 'components';
 
 import { DataSetup, DataView } from 'modules/loan/components';
 import { DataViewModel, DataSetupModel } from 'modules/loan/types';
+import { LoanCalculatorService } from 'modules/loan/services';
 
 const DataWizard = () => {
 	const [values, setValues] = useState({
@@ -11,11 +13,20 @@ const DataWizard = () => {
 	});
 
 	const onChange = (key, value) => {
+		// eslint-disable-next-line no-console
+		console.log({ ...values, [key]: value });
+
 		setValues({ ...values, [key]: value });
+	};
+
+	useEffect(() => {
+		const instance = new LoanCalculatorService({ ...values.DataSetup });
+		instance.generate();
+		const generated = instance.loans;
 
 		// eslint-disable-next-line no-console
-		console.log(values);
-	};
+		console.log(generated);
+	}, [values]);
 
 	const steps = [
 		{

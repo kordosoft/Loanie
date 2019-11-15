@@ -22,7 +22,7 @@ const DataSetup = ({ data, onChange }) => {
 	const inputOnChange = (evt) => {
 		const { name, value } = evt.target;
 
-		setDataSetup(Object.assign(new DataSetupModel(), { ...dataSetup, [name]: value }));
+		setDataSetup({ ...dataSetup, [name]: value });
 	};
 
 	return (
@@ -41,7 +41,7 @@ const DataSetup = ({ data, onChange }) => {
 };
 
 DataSetup.propTypes = {
-	data: PropTypes.instanceOf(DataSetupModel),
+	data: PropTypes.shape({}),
 	onChange: PropTypes.func.isRequired
 };
 

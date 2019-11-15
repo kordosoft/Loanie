@@ -3,7 +3,7 @@
 export default class LoanCalculatorService {
 	constructor(loanPrincipal, numberOfPayments, interestRate) {
 		this.loanPrincipal = loanPrincipal;
-		this.numberOfPayments = numberOfPayments;
+		this.numberOfPayments = Number(numberOfPayments);
 		this.interestRate = interestRate;
 
 		this.loans = [];
