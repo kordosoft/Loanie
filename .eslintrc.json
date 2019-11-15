@@ -25,9 +25,9 @@
     "prettier/prettier": [
       "error",
       {
-        "trailingComma": "es5",
+        "trailingComma": "none",
         "singleQuote": true,
-        "printWidth": 100
+        "printWidth": 150
       }
     ],
     "react/jsx-props-no-spreading": [ "off" ]

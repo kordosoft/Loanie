@@ -1,3 +1,4 @@
-import { ForgotPassword, Login, Register } from './components';
+import { identityService } from './services';
+import AuthoringRouter from './router';
 
-export { ForgotPassword, Login, Register };
+export { identityService, AuthoringRouter };

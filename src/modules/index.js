@@ -1,5 +1,5 @@
-﻿import { DataWizard } from './loan';
-import { ForgotPassword, Login, Register } from './authoring';
+﻿import { LoanRouter } from './loan';
+import { AuthoringRouter, identityService } from './authoring';
 import PageNotFound from './pageNotFound';
 
-export { DataWizard, Login, Register, ForgotPassword, PageNotFound };
+export { LoanRouter, AuthoringRouter, identityService, PageNotFound };

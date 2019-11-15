@@ -8,4 +8,6 @@ import Slider from './slider';
 import Stepper from './stepper';
 import Header from './header';
 
-export { Button, Input, Password, Currency, Percentage, Slider, Stepper, Header };
+import Private from './private';
+
+export { Button, Input, Password, Currency, Percentage, Slider, Stepper, Header, Private };

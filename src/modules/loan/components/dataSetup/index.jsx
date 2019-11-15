@@ -9,61 +9,44 @@ import { Percentage, Currency, Button, Slider } from 'components';
 import './index.scss';
 
 const DataSetup = ({ data, onChange }) => {
-    const [dataSetup, setDataSetup] = useState(data);
+	const [dataSetup, setDataSetup] = useState(data);
 
-    const handleSubmit = (evt) => {
-        evt.preventDefault();
+	const handleSubmit = (evt) => {
+		evt.preventDefault();
 
-        toast.success('Submited; updated pipeline');
+		toast.success('Submited; updated pipeline');
 
-        onChange(data);
-    };
+		onChange('DataSetup', dataSetup);
+	};
 
-    const inputOnChange = (evt) => {
-        const { name } = evt.target;
-        const { value } = evt.target;
+	const inputOnChange = (evt) => {
+		const { name, value } = evt.target;
 
-        setDataSetup({ ...dataSetup, ...{ [name]: value } });
-    };
+		setDataSetup(Object.assign(new DataSetupModel(), { ...dataSetup, [name]: value }));
+	};
 
-    return (
-        <div className="data-setup">
-            <form onSubmit={handleSubmit} className="col">
-                <Currency
-                    title="Loan principal"
-                    name="loanPrincipal"
-                    onChange={inputOnChange}
-                    value={dataSetup.loanPrincipal}
-                />
+	return (
+		<div className="data-setup">
+			<form onSubmit={handleSubmit} className="col">
+				<Currency title="Loan principal" name="loanPrincipal" onChange={inputOnChange} value={dataSetup.loanPrincipal} />
 
-                <Percentage
-                    title="Interest"
-                    name="interestRate"
-                    onChange={inputOnChange}
-                    value={dataSetup.interestRate}
-                />
+				<Percentage title="Interest" name="interestRate" onChange={inputOnChange} value={dataSetup.interestRate} />
 
-                <Slider
-                    title="Number of payments"
-                    name="numberOfPayments"
-                    value={dataSetup.numberOfPayments}
-                    max={360}
-                    onChange={inputOnChange}
-                />
+				<Slider title="Number of payments" name="numberOfPayments" value={dataSetup.numberOfPayments} max={360} onChange={inputOnChange} />
 
-                <Button type="submit" text="Next" className="btn-primary btn-block" />
-            </form>
-        </div>
-    );
+				<Button type="submit" text="Next" className="btn-primary btn-block" />
+			</form>
+		</div>
+	);
 };
 
 DataSetup.propTypes = {
-    data: PropTypes.instanceOf(DataSetupModel),
-    onChange: PropTypes.func.isRequired,
+	data: PropTypes.instanceOf(DataSetupModel),
+	onChange: PropTypes.func.isRequired
 };
 
 DataSetup.defaultProps = {
-    data: new DataSetupModel()
+	data: new DataSetupModel()
 };
 
 export default DataSetup;

@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+﻿import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { DataViewModel } from 'modules/loan/types';
@@ -6,31 +6,38 @@ import { DataViewModel } from 'modules/loan/types';
 import './index.scss';
 
 const DataView = ({ data, onChange }) => {
-    const [dataSetup, setDataSetup] = useState(data);
+	const [dataView, setDataView] = useState(data);
 
-    const handleSubmit = (evt) => {
-        evt.preventDefault();
+	const inputOnChange = (evt) => {
+		const { name, value } = evt.target;
 
-        onChange(dataSetup);
-    };
+		setDataView(Object.assign(new DataViewModel(), { ...dataView, [name]: value }));
+	};
 
-    const inputOnChange = (evt) => {
-        const { name } = evt.target;
-        const { value } = evt.target;
+	const handleSubmit = (evt) => {
+		evt.preventDefault();
 
-        setDataSetup({ ...dataSetup, ...{ [name]: value } });
-    };
+		onChange('DataView', dataView);
 
-    return <div className="data-view" onClick={handleSubmit} role="presentation">Here is my view</div>;
+		if (dataView.numberOfPayments === 360) {
+			inputOnChange(evt);
+		}
+	};
+
+	return (
+		<div className="data-view" onClick={handleSubmit} role="presentation">
+			Here is my view
+		</div>
+	);
 };
 
 DataView.propTypes = {
-    data: PropTypes.instanceOf(DataViewModel),
-    onChange: PropTypes.func.isRequired,
+	data: PropTypes.instanceOf(DataViewModel),
+	onChange: PropTypes.func.isRequired
 };
 
 DataView.defaultProps = {
-    data: new DataViewModel()
+	data: new DataViewModel()
 };
 
 export default DataView;

@@ -1,3 +1,3 @@
-import { DataWizard } from './components';
+import LoanRouter from './router';
 
-export { DataWizard };
+export { LoanRouter };
