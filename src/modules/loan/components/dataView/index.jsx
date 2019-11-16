@@ -6,7 +6,14 @@ import { LoanCalculatorService } from 'modules/loan/services';
 import './index.scss';
 
 const DataView = ({ data }) => {
-	const [loans, setLoans] = useState([]);
+	const { loanPrincipal, numberOfPayments, interestRate } = data;
+	const [loanCalculator, setLoanCalculator] = useState(new LoanCalculatorService(loanPrincipal, numberOfPayments, interestRate));
+
+	useEffect(() => {
+		loanCalculator.refund(120, 5000);
+
+		setLoanCalculator(loanCalculator);
+	}, [loanCalculator]);
 
 	const numberOfDigits = 2;
 	const currencyFormater = new Intl.NumberFormat(navigator.language, {
@@ -15,15 +22,6 @@ const DataView = ({ data }) => {
 		useGrouping: false,
 		maximumFractionDigits: numberOfDigits
 	});
-
-	useEffect(() => {
-		const { loanPrincipal, numberOfPayments, interestRate } = data;
-		const instance = new LoanCalculatorService(loanPrincipal, numberOfPayments, interestRate);
-
-		const generated = instance.loans;
-
-		setLoans(generated);
-	}, [data]);
 
 	const currency = (value) => <>{currencyFormater.format(value)}</>;
 
@@ -41,7 +39,7 @@ const DataView = ({ data }) => {
 				</div>
 			</div>
 			<div className="data-view-container">
-				{loans.map((loan) => (
+				{loanCalculator.loans.map((loan) => (
 					<div key={`loan-${loan.numberOfPayments}`} className="row card bg-light">
 						<div className="col card-body">
 							<div className="row">
