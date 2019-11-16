@@ -15,7 +15,6 @@ const DataView = ({ data }) => {
 		useGrouping: false,
 		maximumFractionDigits: numberOfDigits
 	});
-	const numberFormater = new Intl.NumberFormat(navigator.language, { style: 'decimal', useGrouping: false, maximumFractionDigits: numberOfDigits });
 
 	useEffect(() => {
 		const { loanPrincipal, numberOfPayments, interestRate } = data;
@@ -27,7 +26,6 @@ const DataView = ({ data }) => {
 	}, [data]);
 
 	const currency = (value) => <>{currencyFormater.format(value)}</>;
-	const decimal = (value) => <>{numberFormater.format(value)}</>;
 
 	return (
 		<div className="data-view">
