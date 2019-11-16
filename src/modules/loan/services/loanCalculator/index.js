@@ -2,9 +2,9 @@
 
 export default class LoanCalculatorService {
 	constructor(loanPrincipal, numberOfPayments, interestRate) {
-		this.loanPrincipal = loanPrincipal;
+		this.loanPrincipal = Number(loanPrincipal);
 		this.numberOfPayments = Number(numberOfPayments);
-		this.interestRate = interestRate;
+		this.interestRate = Number(interestRate);
 
 		this.loans = [];
 

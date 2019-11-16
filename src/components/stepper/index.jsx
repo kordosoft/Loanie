@@ -1,11 +1,9 @@
-﻿import React, { useState } from 'react';
+﻿import React from 'react';
 import PropTypes from 'prop-types';
 
 import './index.scss';
 
-const Stepper = ({ title, startingStep, steps }) => {
-	const [currentStep, setCurrentStep] = useState(startingStep);
-
+const Stepper = ({ title, currentStep, steps }) => {
 	return (
 		<div className="row">
 			<div className="col">
@@ -18,12 +16,7 @@ const Stepper = ({ title, startingStep, steps }) => {
 					<div className="col">
 						<ul className="progressbar">
 							{steps.map((step, index) => (
-								<li
-									key={`stepper-${step.title}`}
-									className={index <= currentStep ? 'active' : ''}
-									onClick={() => setCurrentStep(index)}
-									role="presentation"
-								>
+								<li key={`stepper-${step.title}-${step.index}`} className={index <= currentStep ? 'active' : ''}>
 									{step.title}
 								</li>
 							))}
@@ -31,7 +24,9 @@ const Stepper = ({ title, startingStep, steps }) => {
 					</div>
 				</div>
 				<div className="row">
-					<div className="col">{steps[currentStep].content}</div>
+					<div className="col" key={currentStep}>
+						{steps[currentStep].content}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -40,7 +35,7 @@ const Stepper = ({ title, startingStep, steps }) => {
 
 Stepper.propTypes = {
 	title: PropTypes.string.isRequired,
-	startingStep: PropTypes.number,
+	currentStep: PropTypes.number,
 	steps: PropTypes.arrayOf(
 		PropTypes.shape({
 			title: PropTypes.string.isRequired,
@@ -50,7 +45,7 @@ Stepper.propTypes = {
 };
 
 Stepper.defaultProps = {
-	startingStep: 0
+	currentStep: 0
 };
 
 export default Stepper;

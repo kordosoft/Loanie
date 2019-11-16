@@ -1,32 +1,27 @@
-﻿import React, { useState, useEffect } from 'react';
+﻿import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { Stepper } from 'components';
-
 import { DataSetup, DataView } from 'modules/loan/components';
-import { DataViewModel, DataSetupModel } from 'modules/loan/types';
-import { LoanCalculatorService } from 'modules/loan/services';
+
+import { DataSetupModel } from 'modules/loan/types';
 
 const DataWizard = () => {
 	const [values, setValues] = useState({
-		DataView: new DataViewModel(),
 		DataSetup: new DataSetupModel()
 	});
+	const [currentStep, setCurrentStep] = useState(0);
 
 	const onChange = (key, value) => {
-		// eslint-disable-next-line no-console
-		console.log({ ...values, [key]: value });
-
 		setValues({ ...values, [key]: value });
+
+		// eslint-disable-next-line no-use-before-define
+		if (currentStep + 1 < steps.length) {
+			setCurrentStep(currentStep + 1);
+		} else {
+			toast.success('Done');
+		}
 	};
-
-	useEffect(() => {
-		const instance = new LoanCalculatorService({ ...values.DataSetup });
-		instance.generate();
-		const generated = instance.loans;
-
-		// eslint-disable-next-line no-console
-		console.log(generated);
-	}, [values]);
 
 	const steps = [
 		{
@@ -35,11 +30,11 @@ const DataWizard = () => {
 		},
 		{
 			title: 'Loan view',
-			content: <DataView onChange={onChange} data={values.DataView} />
+			content: <DataView onChange={onChange} data={values.DataSetup} />
 		}
 	];
 
-	return <Stepper title="Loan wizard" steps={steps} />;
+	return <Stepper title="Loan wizard" steps={steps} currentStep={currentStep} />;
 };
 
 export default DataWizard;

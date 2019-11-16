@@ -1,6 +1,5 @@
 ﻿import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { toast } from 'react-toastify';
 
 import { DataSetupModel } from 'modules/loan/types';
 
@@ -13,8 +12,6 @@ const DataSetup = ({ data, onChange }) => {
 
 	const handleSubmit = (evt) => {
 		evt.preventDefault();
-
-		toast.success('Submited; updated pipeline');
 
 		onChange('DataSetup', dataSetup);
 	};
