@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useCallback } from 'react';
+﻿import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 import { Currency } from 'components';
@@ -13,12 +13,6 @@ const DataView = ({ data }) => {
 
 	const [, updateState] = useState();
 	const forceUpdate = useCallback(() => updateState({}), []);
-
-	useEffect(() => {
-		loanCalculator.refund(120, 5000);
-
-		forceUpdate();
-	}, [loanCalculator]);
 
 	const numberOfDigits = 2;
 	const currencyFormater = new Intl.NumberFormat(navigator.language, {
