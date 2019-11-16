@@ -1,18 +1,23 @@
-﻿import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
+import { Currency } from 'components';
 import { LoanCalculatorService } from 'modules/loan/services';
 
 import './index.scss';
 
 const DataView = ({ data }) => {
 	const { loanPrincipal, numberOfPayments, interestRate } = data;
-	const [loanCalculator, setLoanCalculator] = useState(new LoanCalculatorService(loanPrincipal, numberOfPayments, interestRate));
+	const [loanCalculator] = useState(new LoanCalculatorService(loanPrincipal, numberOfPayments, interestRate));
+	const [refunds, setRefunds] = useState({});
+
+	const [, updateState] = useState();
+	const forceUpdate = useCallback(() => updateState({}), []);
 
 	useEffect(() => {
 		loanCalculator.refund(120, 5000);
 
-		setLoanCalculator(loanCalculator);
+		forceUpdate();
 	}, [loanCalculator]);
 
 	const numberOfDigits = 2;
@@ -25,6 +30,17 @@ const DataView = ({ data }) => {
 
 	const currency = (value) => <>{currencyFormater.format(value)}</>;
 
+	const inputOnChange = (evt) => {
+		const { name, value } = evt.target;
+
+		const month = name.split('-')[1];
+		setRefunds({ ...refunds, [month]: Number(value) });
+
+		loanCalculator.refund(Number(month), Number(value));
+
+		forceUpdate();
+	};
+
 	return (
 		<div className="data-view">
 			<div className="row sticky-top card bg-primary">
@@ -35,6 +51,7 @@ const DataView = ({ data }) => {
 						<div className="col">Monthly payment</div>
 						<div className="col">Monthly interest</div>
 						<div className="col">Monthly principal</div>
+						<div className="col">Amount to refund</div>
 					</div>
 				</div>
 			</div>
@@ -48,6 +65,13 @@ const DataView = ({ data }) => {
 								<div className="col">{currency(loan.monthlyPayment)}</div>
 								<div className="col">{currency(loan.interest)}</div>
 								<div className="col">{currency(loan.monthlyPayment - loan.interest)}</div>
+								<div className="col">
+									<Currency
+										name={`month-${loan.numberOfPayments}`}
+										onChange={inputOnChange}
+										value={refunds[loan.numberOfPayments] || 0}
+									/>
+								</div>
 							</div>
 						</div>
 					</div>

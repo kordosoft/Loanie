@@ -18,7 +18,7 @@ const Percentage = (props) => {
 };
 
 Percentage.propTypes = {
-	title: PropTypes.string.isRequired,
+	title: PropTypes.string,
 	name: PropTypes.string.isRequired,
 	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 	onChange: PropTypes.func.isRequired,
@@ -27,6 +27,7 @@ Percentage.propTypes = {
 };
 
 Percentage.defaultProps = {
+	title: '',
 	placeholder: '',
 	step: 0.01
 };

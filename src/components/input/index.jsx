@@ -10,11 +10,21 @@ const Input = ({ title, name, inputType, value, step, placeholder, onChange, add
 		return <div className="input-group-append">{addOn}</div>;
 	};
 
-	return (
-		<div className="form-group">
+	const preppendTitle = () => {
+		if (title === '') {
+			return null;
+		}
+
+		return (
 			<label className="form-label" htmlFor={name}>
 				{title}
 			</label>
+		);
+	};
+
+	return (
+		<div className="form-group">
+			{preppendTitle()}
 			<div className="input-group">
 				<input
 					className="form-control"
@@ -33,7 +43,7 @@ const Input = ({ title, name, inputType, value, step, placeholder, onChange, add
 };
 
 Input.propTypes = {
-	title: PropTypes.string.isRequired,
+	title: PropTypes.string,
 	name: PropTypes.string.isRequired,
 	inputType: PropTypes.oneOf(['text', 'number', 'password']).isRequired,
 	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -44,6 +54,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
+	title: '',
 	placeholder: '',
 	step: 1,
 	addOn: null

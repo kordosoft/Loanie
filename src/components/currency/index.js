@@ -18,7 +18,7 @@ const Currency = (props) => {
 };
 
 Currency.propTypes = {
-	title: PropTypes.string.isRequired,
+	title: PropTypes.string,
 	name: PropTypes.string.isRequired,
 	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 	onChange: PropTypes.func.isRequired,
@@ -26,6 +26,7 @@ Currency.propTypes = {
 };
 
 Currency.defaultProps = {
+	title: '',
 	placeholder: ''
 };
 

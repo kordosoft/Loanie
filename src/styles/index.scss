@@ -1,17 +1,17 @@
 ﻿%center {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
 }
 
 :root {
-    --main-color-hue: 217;
-    --main-color: hsla(var(--main-color-hue), 97%, 61%, 1);
-    --black: #222;
-    --red: #ed6b5f;
-    --green: #28a745;
-    --light-gray: #e9ecef;
+	--main-color-hue: 217;
+	--main-color: hsla(var(--main-color-hue), 97%, 61%, 1);
+	--black: #222;
+	--red: #ed6b5f;
+	--green: #28a745;
+	--light-gray: #e9ecef;
 }

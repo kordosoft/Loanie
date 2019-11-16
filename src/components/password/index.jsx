@@ -26,7 +26,7 @@ const Password = (props) => {
 };
 
 Password.propTypes = {
-	title: PropTypes.string.isRequired,
+	title: PropTypes.string,
 	name: PropTypes.string.isRequired,
 	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 	onChange: PropTypes.func.isRequired,
@@ -34,6 +34,7 @@ Password.propTypes = {
 };
 
 Password.defaultProps = {
+	title: '',
 	placeholder: ''
 };
 
